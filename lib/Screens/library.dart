@@ -17,6 +17,7 @@ class LibraryPage extends StatefulWidget {
 }
 
 class _LibraryPageState extends State<LibraryPage> {
+  int? selectedCat;
   @override
   Widget build(BuildContext context) {
     final List<Map<dynamic, dynamic>> recentData1 = [
@@ -50,7 +51,8 @@ class _LibraryPageState extends State<LibraryPage> {
       const PodcastDesc()
     ];
     int selectedOne = 2;
-    final categories = [
+    final List<String> categories = [
+      '',
       'Folders',
       'Playlist',
       'Artist',
@@ -58,7 +60,6 @@ class _LibraryPageState extends State<LibraryPage> {
       'Podcast & Shows',
     ];
 
-    int? selectedIndex;
     return Scaffold(
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 50.w),
@@ -195,29 +196,22 @@ class _LibraryPageState extends State<LibraryPage> {
                       children: [
                         ...List.generate(
                           categories.length,
-                          (index) => InkWell(
-                            onTap: () {
-                              setState(() {
-                                index == selectedIndex;
-                              });
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(right: 10.w),
-                              padding: EdgeInsets.symmetric(horizontal: 7.w),
-                              height: 20.h,
-                              decoration: BoxDecoration(
-                                color: selectedIndex == index ? bolor1 : null,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 1,
-                                ),
+                          (index) => Container(
+                            margin: EdgeInsets.only(right: 16.w),
+                            padding: EdgeInsets.symmetric(horizontal: 7.w),
+                            height: 20.h,
+                            decoration: BoxDecoration(
+                              color: selectedCat == index ? bolor1 : null,
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1,
                               ),
-                              child: Text(
-                                categories[index],
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ),
+                            ),
+                            child: Text(
+                              categories[index],
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 12),
                             ),
                           ),
                         ),
@@ -233,7 +227,7 @@ class _LibraryPageState extends State<LibraryPage> {
                 child: PageView.builder(
                   onPageChanged: (value) {
                     setState(() {
-                      
+                      selectedCat = value;
                     });
                   },
                   itemCount: categories.length,

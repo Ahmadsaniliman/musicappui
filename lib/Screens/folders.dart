@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:musicapp/Screens/folder1.dart';
 import 'package:musicapp/Util/colors.dart';
 
 class FoldersDesc extends StatelessWidget {
@@ -112,30 +113,40 @@ class FoldersDesc extends StatelessWidget {
           children: [
             ...List.generate(
               folderData.length,
-              (index) => Container(
-                margin: EdgeInsets.only(bottom: 20.h),
-                height: 82.h,
-                width: double.infinity,
-                child: ListTile(
-                  title: Text(
-                    folderData[index]['name']!,
-                    style: const TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
-                  ),
-                  subtitle: Text(
-                    folderData[index]['num']!,
-                    style: const TextStyle(
-                      color: Colors.grey,
+              (index) => InkWell(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const FolderDetailsScreen(),
                     ),
-                  ),
-                  leading: SizedBox(
-                    height: 82.h,
-                    width: 84.w,
-                    child: Image.asset(
-                      'assets/images/Rectangle 30 (8).png',
-                      fit: BoxFit.contain,
+                    (route) => false,
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20.h),
+                  height: 82.h,
+                  width: double.infinity,
+                  child: ListTile(
+                    title: Text(
+                      folderData[index]['name']!,
+                      style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                    subtitle: Text(
+                      folderData[index]['num']!,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    leading: SizedBox(
+                      height: 82.h,
+                      width: 84.w,
+                      child: Image.asset(
+                        'assets/images/Rectangle 30 (8).png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
