@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/Screens/menu_screen.dart';
 import 'package:musicapp/Util/colors.dart';
+import 'package:musicapp/eqaulizer_screen.dart';
 
 class SongScreen extends StatelessWidget {
   const SongScreen({super.key});
@@ -156,7 +157,17 @@ class SongScreen extends StatelessWidget {
                                   color: Colors.white),
                             ),
                             Image.asset('assets/images/Union.png'),
-                            Image.asset('assets/images/equalizer.png'),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                      builder: (context) => const EqaulizerScreen(),
+                                    ),
+                                    (route) => false,
+                                  );
+                                },
+                                child:
+                                    Image.asset('assets/images/equalizer.png')),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context).pushAndRemoveUntil(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/Screens/sleep_time_screen.dart';
 import 'package:musicapp/Util/colors.dart';
+import 'package:musicapp/queue.dart';
 
 class SongMenScreen extends StatelessWidget {
   const SongMenScreen({super.key});
@@ -76,16 +77,26 @@ class SongMenScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.favorite_border,
                       color: bolor1,
                     ),
-                    Text(
-                      '+',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const QueueScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                      child: const Text(
+                        '+',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                   ],
                 ),

@@ -8,6 +8,7 @@ import 'package:musicapp/Screens/playlist.dart';
 import 'package:musicapp/Screens/home_page.dart';
 import 'package:musicapp/Screens/podcast.dart';
 import 'package:musicapp/Util/colors.dart';
+import 'package:musicapp/add_to_playlist.dart';
 
 class LibraryPage extends StatefulWidget {
   const LibraryPage({super.key});
@@ -265,31 +266,41 @@ class Description extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 56.h,
-                      width: 56.w,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFF00C2CB),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const AddToPlayListScreen(),
                       ),
-                      child: const Center(
-                        child: Text(
-                          '+',
-                          style: TextStyle(fontSize: 30),
+                      (route) => false,
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 56.h,
+                        width: 56.w,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFF00C2CB),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '+',
+                            style: TextStyle(fontSize: 30),
+                          ),
                         ),
                       ),
-                    ),
-                    const Text(
-                      'Add New Playlist',
-                      style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.grey,
-                      ),
-                    )
-                  ],
+                      const Text(
+                        'Add New Playlist',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
